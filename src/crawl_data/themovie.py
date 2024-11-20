@@ -59,18 +59,8 @@ class MovieCrawler:
         }
 
     def add_details_to_csv(self, input_file: str, output_file: str):
-        """
-        Read a CSV file with movie IDs, fetch additional details for each movie, 
-        and save the updated data to a new CSV file.
-
-        Args:
-            input_file (str): Path to the input CSV file.
-            output_file (str): Path to save the updated CSV file.
-        """
-        # Load the existing CSV
         movies = pd.read_csv(input_file)
-
-        # Initialize additional fields
+        
         movies["budget"] = None
         movies["genres"] = None
         movies["imdb_id"] = None
@@ -82,7 +72,6 @@ class MovieCrawler:
         movies["tagline"] = None
         movies["spoken_languages"] = None
 
-        # Fetch details for each movie ID
         for index, row in movies.iterrows():
             try:
                 movie_id = row["id"]
@@ -102,6 +91,5 @@ class MovieCrawler:
             except Exception as e:
                 print(f"Failed to fetch details for movie ID {row['id']}: {e}")
 
-        # Save the updated DataFrame to a new CSV file
         movies.to_csv(output_file, index=False)
         print(f"Updated data saved to {output_file}")
