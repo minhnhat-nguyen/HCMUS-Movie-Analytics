@@ -15,6 +15,7 @@ The project is organized into the following folders:
 - **docs:** Documentation for the project.
 - **environments:** Contains the `Dockerfile` for creating developing environment.
 - **notebooks:** Jupyter notebooks used for exploration, analysis, or testing.
+- **scripts:** Contains scripts for various tasks (e.g., crawl data, training).
 - **src:** Main code for this project
 
 ## Files
@@ -22,3 +23,16 @@ The project is organized into the following folders:
 - **.env:** Environment variables file.
 - **.gitignore:** Specifies files and directories to ignore for Git version control.
 - **.pre-commit-config.yaml:** Configuration for pre-commit hooks.
+
+## Getting started
+
+### Create the environment
+```
+cd environments
+pip install -r requirements.txt
+```
+
+## Run the application
+```
+bash ./scripts/test.sh
+```
