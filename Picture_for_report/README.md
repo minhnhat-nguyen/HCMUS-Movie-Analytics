@@ -1,0 +1,7 @@
+- Có các giai đoạn:
+    - 1: mới đọc file data
+    - 2: mới xóa xong các cột lần đầu
+    - 3: xóa các dòng worldwide = 0
+    - 4: xóa các dòng miss ở tất cả các khu vực
+    - 5: xóa các cột chỉ còn 1 loại dữ liệu hoặc không cần thiết sau khi thực hiện các bước trên
+- Col(x,y): x là giai đoạn, y là thứ tự ảnh
