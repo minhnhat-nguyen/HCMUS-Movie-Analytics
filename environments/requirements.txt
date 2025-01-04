@@ -7,3 +7,7 @@ selenium
 webdriver-manager
 seaborn
 json
+matplotlib
+seaborn
+scipy
+scikit-learn
