@@ -4,6 +4,43 @@ import os
 import time
 
 class MovieCrawler:
+    """
+        1. Khởi tạo (`__init__`)
+        - Các biến môi trường để cấu hình API của The Movie Database (TMDB):
+            - `api_key`: Khóa API.
+            - `access_token`: Token xác thực để gửi các yêu cầu tới API của TMDB.
+            - `base_url`: URL gốc của API TMDB.
+        - Các headers mặc định để gửi yêu cầu HTTP, bao gồm định dạng JSON và Authorization.
+
+        2. Phương thức chính
+        - `get_movies(num_pages: int, max_retries: int = 5) -> pd.DataFrame`:
+            - Lấy danh sách phim phổ biến từ TMDB theo số trang chỉ định.
+            - Duyệt qua từng trang và gửi yêu cầu đến API, hỗ trợ tối đa `max_retries` lần nếu gặp lỗi.
+            - Kết quả trả về là một DataFrame chứa các thông tin thô về danh sách phim.
+
+        - `save_to_csv(num_pages: int, file_name: str)`:
+            - Lấy danh sách phim (dùng `get_movies`) và lưu thông tin này vào một file CSV.
+
+        - `get_movie_details(movie_id: int) -> dict`:
+            - Lấy thông tin chi tiết của một phim cụ thể từ TMDB dựa trên `movie_id`.
+            - Dữ liệu trả về là một dictionary chứa các thông tin như:
+            - `budget`, `genres`, `imdb_id`, `production_companies`, `production_countries`, `revenue`, `runtime`, `status`, `tagline`, `spoken_languages`.
+
+        - `add_details_to_csv(input_file: str, output_file: str)`:
+            - Đọc danh sách phim từ file CSV đầu vào.
+            - Gọi `get_movie_details` để lấy thông tin chi tiết của từng phim và thêm vào DataFrame.
+            - Các cột được thêm mới bao gồm:
+            - `budget`, `genres`, `imdb_id`, `production_companies`, `production_countries`, `revenue`, `runtime`, `status`, `tagline`, `spoken_languages`.
+            - Ghi dữ liệu đã cập nhật vào file CSV đầu ra.
+
+        3. Sử dụng thư viện
+        - `requests`: Gửi yêu cầu HTTP để lấy dữ liệu từ API của TMDB.
+        - `pandas`: Xử lý dữ liệu và ghi dữ liệu vào file CSV.
+        - `os`: Lấy các biến môi trường (API key, access token, base URL).
+        - `time`: Hỗ trợ việc xử lý lỗi bằng cách chờ trước khi thử lại.
+    """
+
+    
     def __init__(self):
         self.api_key = os.getenv("THE_MOVIE_DB_API_KEY")
         self.access_token = os.getenv("THE_MOVIE_DB_ACCESS_TOKEN")

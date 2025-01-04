@@ -3,10 +3,39 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 class BoxOfficeMojoCrawler:
+    """
+        1. **Khởi tạo (`__init__`)**
+        - Định nghĩa URL cơ bản để truy cập vào từng trang phim dựa trên `IMDb ID`.
+
+        2. **Phương thức chính**
+        - `fetch_data(imdb_id: str)`: Gửi yêu cầu HTTP GET để lấy HTML nội dung trang Box Office Mojo cho một phim dựa trên `IMDb ID`.
+            - Nếu có lỗi trong quá trình lấy dữ liệu, sẽ trả về `None` và in lỗi ra màn hình.
+        - `parse_data(html_content: str)`: Phân tích nội dung HTML và trích xuất dữ liệu doanh thu theo khu vực.
+            - Sử dụng BeautifulSoup để phân tích nội dung HTML.
+            - Tìm tất cả các phần và bảng liên quan đến doanh thu (khu vực, opening, gross).
+        - `clean_currency(value: str)`: Xử lý chuỗi giá trị tiền tệ, loại bỏ ký hiệu "$" và dấu phẩy, sau đó chuyển đổi thành số nguyên.
+        - `clean_region_name(region: str)`: Làm sạch tên khu vực, chuyển sang dạng chữ thường, thay khoảng trắng bằng dấu gạch dưới.
+
+        3. **Tổng hợp dữ liệu**
+        - `fetch_and_aggregate(imdb_id: str)`: 
+            - Kết hợp việc lấy dữ liệu, phân tích HTML, và tổng hợp thông tin doanh thu theo từng khu vực.
+            - Đồng thời lấy doanh thu tổng hợp (domestic, international, worldwide) từ bảng tóm tắt.
+        - `process_csv(input_file: str, output_file: str)`: 
+            - Đọc danh sách `IMDb ID` từ file CSV.
+            - Lấy dữ liệu doanh thu cho từng phim và thêm các cột chứa thông tin tổng hợp.
+            - Ghi kết quả ra file CSV đầu ra.
+
+        4. **Sử dụng thư viện**
+        - `requests`: Để gửi yêu cầu HTTP.
+        - `BeautifulSoup` từ thư viện `bs4`: Để phân tích nội dung HTML.
+        - `pandas`: Để đọc, xử lý, và ghi file CSV.
+    """
+
+    
     def __init__(self):
         self.base_url = "https://www.boxofficemojo.com/title/{imdb_id}/?ref_=bo_tt_tab#tabs"
 
-    def fetch_data(self, imdb_id: str):=
+    def fetch_data(self, imdb_id: str):
         try:
             url = self.base_url.format(imdb_id=imdb_id)
             response = requests.get(url)
