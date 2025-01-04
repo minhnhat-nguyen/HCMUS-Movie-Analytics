@@ -5,34 +5,39 @@
   </p>
 </h1>
 
-This repository contains the code and resources for the Movie Analytics.
+Kho lưu trữ này chứa mã nguồn và tài nguyên cho dự án Movie Analytics.
 
-## Project Structure
+## Cấu trúc dự án
 
-The project is organized into the following folders:
+Dự án được tổ chức thành các thư mục sau:
 
-- **data:** Contains datasets or data files used by the project.
-- **docs:** Documentation for the project.
-- **environments:** Contains the `Dockerfile` for creating developing environment.
-- **notebooks:** Jupyter notebooks used for exploration, analysis, or testing.
-- **scripts:** Contains scripts for various tasks (e.g., crawl data, training).
-- **src:** Main code for this project
+- **data:** Chứa các tệp dữ liệu được sử dụng trong dự án:
+  - **movies.csv:** Chứa dữ liệu thô được thu thập từ nguồn.
+  - **cleaned_movies.csv:** Chứa dữ liệu đã được làm sạch sau khi tiền xử lý.
+  - **cleaned_movies_no_outliers.csv:** Chứa dữ liệu đã được làm sạch và loại bỏ các giá trị ngoại lai.
+- **environments:** 
+  - Chứa tệp `requirements.txt` để thiết lập môi trường Python.
+- **notebooks:** 
+  - Chứa các sổ tay Jupyter để khám phá và phân tích dữ liệu (EDA).
+  - Mô hình:
+    - **Model_Movie_Profitability_Predictor.ipynb:** Chứa mã huấn luyện mô hình dự đoán lợi nhuận của phim.
+    - **Model_Optimize_Budget.ipynb:** Chứa mã huấn luyện mô hình tối ưu hóa ngân sách cho phim.
+    - **Model_Optimize_Budget:** Chứa mã huấn luyện mô hình tối ưu hóa ngân sách cho phim.
+- **scripts:** Chứa các tập lệnh cho các tác vụ khác nhau (ví dụ: thu thập dữ liệu, huấn luyện mô hình).
+- **src:** Chứa mã nguồn của dự án.
+  - **preprocess.ipynb:** Chứa mã xử lý dữ liệu.
+  - **crawler:** Chứa mã thu thập dữ liệu.
 
-## Files
+## Các tệp
 
-- **.env:** Environment variables file.
-- **.gitignore:** Specifies files and directories to ignore for Git version control.
-- **.pre-commit-config.yaml:** Configuration for pre-commit hooks.
+- **.env:** Tệp chứa các biến môi trường.
+- **.gitignore:** Chỉ định các tệp và thư mục cần bỏ qua khi sử dụng Git để quản lý phiên bản.
+- **.pre-commit-config.yaml:** Cấu hình cho các hooks trước khi commit.
 
-## Getting started
+## Cài đặt
 
-### Create the environment
+### Cài đặt môi trường 
 ```
 cd environments
 pip install -r requirements.txt
-```
-
-## Run the application
-```
-bash ./scripts/test.sh
 ```
